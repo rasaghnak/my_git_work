@@ -5,9 +5,11 @@
 def revFun(digit):
     rev_num=0
     n=digit
-    while n !< 0:
+    while n>0:
         lst_digit=n%10
+        print(lst_digit)
         rev_num=rev_num*10+lst_digit
+        n = n // 10
     return rev_num
 
 
