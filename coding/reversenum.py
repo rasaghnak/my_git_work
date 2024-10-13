@@ -14,3 +14,16 @@ def revFun(digit):
 
 print(revFun(9897))
 
+
+def reverse_number(number):
+
+    str_number = str(number)
+    
+
+    reversed_str = ''.join(reversed(str_number))
+
+    return int(reversed_str)
+
+number = int(input("Enter a number to reverse: "))
+reversed_num = reverse_number(number)
+print(f"Reversed number is: {reversed_num}")
