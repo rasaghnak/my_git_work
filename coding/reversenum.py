@@ -27,3 +27,4 @@ def reverse_number(number):
 number = int(input("Enter a number to reverse: "))
 reversed_num = reverse_number(number)
 print(f"Reversed number is: {reversed_num}")
+
