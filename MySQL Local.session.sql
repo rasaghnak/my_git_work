@@ -38,3 +38,36 @@ INSERT INTO movies VALUES (6, "Disney's Up", 2009);
  
 select * from movies;
 select * from movies where release_year >=2000 order by release_year
+
+
+-- sample table with aggregate function
+
+
+-- create a cloth store 
+-- with 5 columns as tops,pants, scarfs, id,quantity
+create table cloth(id integer primary key, tops text, pants text, scrafs text, price integer);
+
+
+insert into cloth values(1, 'blue top', 'blue jeans', 'hermes scarf', 15);
+
+insert into cloth values(2, 'pink top', 'pink jeans', 'pink scarf', 14);
+insert into cloth values(3, 'yellow top', 'yellow jeans', 'pink scarf', 13);
+insert into cloth values(4, 'purple top', 'purple jeans', 'pink scarf', 12);
+insert into cloth values(5, 'violet top', 'violet jeans', 'pink scarf', 11);
+insert into cloth values(6, 'black top', 'black jeans', 'pink scarf', 10);
+insert into cloth values(7, 'cream top', 'cream jeans', 'pink scarf', 9);
+insert into cloth values(8, 'tomato top', 'tomato jeans', 'pink scarf', 8);
+insert into cloth values(9, 'red top', 'red jeans', 'pink scarf', 7);
+insert into cloth values(10, 'marron top', 'marron jeans', 'pink scarf', 6);
+insert into cloth values(11, 'greeen top', 'greeen jeans', 'pink scarf', 5);
+insert into cloth values(12, 'kale top', 'kale jeans', 'pink scarf', 4);
+insert into cloth values(13, 'jio top', 'jio jeans', 'pink scarf', 3);
+insert into cloth values(14, 'nello top', 'nello jeans', 'pink scarf', 2);
+insert into cloth values(15,'njiio top', 'njiio jeans', 'pink scarf', 1);
+
+select * from cloth;
+select sum(price) from cloth;
+select tops from cloth order by price;
+select id,sum(price) from cloth group by id order by price;
+select * from cloth order by price >=10;
+
