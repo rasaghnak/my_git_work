@@ -25,7 +25,8 @@ INSERT INTO Grocery VALUES (6, 'chocolate syrup' , 2,2);
 
 select * from Grocery where aisle >5 ORDER BY aisle;
 
-
+-- group by 
+select aisle, sum(quantity) from Grocery GROUP BY aisle; 
 
 CREATE TABLE movies (id INTEGER PRIMARY KEY, name TEXT, release_year INTEGER);
 INSERT INTO movies VALUES (1, "Avatar", 2009);
