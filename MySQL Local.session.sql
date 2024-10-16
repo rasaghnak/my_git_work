@@ -7,3 +7,4 @@ INSERT INTO Grocery VALUES (1, 'Bananas' , 4);
 INSERT INTO Grocery VALUES (2, 'dark chocolate' , 2);
 INSERT INTO Grocery VALUES (3, 'peanut butter' , 1);
 
+select * from Grocery
