@@ -14,8 +14,6 @@ for i in range(a,b):
                 s=(i,j),i*j
 print(s)
 
-
+# jlkjlkj
 def first_two(lst):
-    result=len(lst)>1
-    if result:
-        a,b=lst[]
+    pass
