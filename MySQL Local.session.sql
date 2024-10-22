@@ -186,3 +186,29 @@ INSERT INTO songs (artist, title)
 select title from songs where artist in ('Queen');
 select name from artists where genre='Pop';
 select title from songs where artist in(select name from artists where genre='Pop');
+
+
+
+CREATE TABLE exercise_logs
+    (id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    type TEXT,
+    minutes INTEGER, 
+    calories INTEGER,
+    heart_rate INTEGER);
+
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("biking", 30, 100, 110);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("biking", 10, 30, 105);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("dancing", 15, 200, 120);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("dancing", 15, 165, 120);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("tree climbing", 30, 70, 90);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("tree climbing", 25, 72, 80);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("rowing", 30, 70, 90);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("hiking", 60, 80, 85);
+
+SELECT * FROM exercise_logs;
+
+select count(*) from exercise_logs where heart_rate>220-30;
+
+-- 50-90%
+
+select count(*) from exercise_logs where 
