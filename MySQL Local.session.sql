@@ -212,3 +212,95 @@ select count(*) from exercise_logs where heart_rate>220-30;
 -- 50-90%
 
 select count(*) from exercise_logs where 
+
+
+
+
+-- case in sql
+
+
+CREATE TABLE exercise_logs
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT,
+    minutes INTEGER, 
+    calories INTEGER,
+    heart_rate INTEGER);
+
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("biking", 30, 100, 110);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("biking", 10, 30, 105);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("dancing", 15, 200, 120);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("dancing", 15, 165, 120);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("tree climbing", 30, 70, 90);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("tree climbing", 25, 72, 80);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("rowing", 30, 70, 90);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("hiking", 60, 80, 85);
+
+SELECT * FROM exercise_logs;
+
+SELECT COUNT(*) FROM exercise_logs WHERE heart_rate > 220 - 30;
+
+/* 50-90% of max*/
+SELECT COUNT(*) FROM exercise_logs WHERE
+    heart_rate >= ROUND(0.50 * (220-30)) 
+    AND  heart_rate <= ROUND(0.90 * (220-30));
+    
+/* CASE */
+SELECT type, heart_rate,
+    CASE 
+        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-30)) THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-30)) THEN "within target"
+        ELSE "below target"
+    END as "hr_zone"
+FROM exercise_logs;
+
+SELECT COUNT(*),
+    CASE 
+        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-30)) THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-30)) THEN "within target"
+        ELSE "below target"
+    END as "hr_zone"
+FROM exercise_logs
+GROUP BY hr_zone;
+
+
+
+
+-- case 2 using CASE 
+
+
+
+CREATE TABLE student_grades (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    number_grade INTEGER,
+    fraction_completed REAL);
+    
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winston", 90, 0.805);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winnefer", 95, 0.901);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winsteen", 85, 0.906);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Wincifer", 66, 0.7054);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winster", 76, 0.5013);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winstonia", 82, 0.9045);
+
+
+
+select name,number_grade, round(100*fraction_completed, 0) as percent_completed from student_grades;
+
+select count(*), 
+    CASE
+        When round(100 * fraction_completed, 0) >90 THEN 'A'
+        When round(100 * fraction_completed, 0) >80   THEN 'B'
+        When round(100 * fraction_completed, 0) >70 AND round(100 * fraction_completed, 0) <80  THEN 'C'
+        ELSE 'F'
+    END as 'letter_grade'
+    from student_grades
+    GROUP BY letter_grade
+    
