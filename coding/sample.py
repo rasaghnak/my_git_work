@@ -61,3 +61,5 @@ def radix_decimal (lst):
         return ["." + number.strip('0') for number in radix(lst_)]
     else:
         return []
+
+
